@@ -1,0 +1,131 @@
+2nd run ilk ve üçüncü 1500 learn iki ve dört test
+
+"C:\Program Files\Anaconda3\python.exe" D:/Users/26000595/PycharmProjects/naiveBayesHW2/learner.py
+handle
+There are 3362.0 tweets in the database
+2123.0 %0.6314693634741225 labeled as Hillary
+1238.0 %0.3682331945270672 labeled as Trump
+
+There are 6940.0 words in the database
+There are 5114.0 Hillary labeled words in the database
+There are 3329.0 Trump labeled words in the database
+20202.0 words in Hillary tweets
+11823.0 words in Trump tweets
+
+Total time: 209.90400004386902
+Learning finished
+
+Process finished with exit code 0
+
+"C:\Program Files\Anaconda3\python.exe" D:/Users/26000595/PycharmProjects/naiveBayesHW2/tester.py
+Total time: 6.698000192642212
+Test finished
+
+Process finished with exit code 0
+
+"C:\Program Files\Anaconda3\python.exe" D:/Users/26000595/PycharmProjects/naiveBayesHW2/evaluation.py
+trueHillary = 1092
+falseHillary = 895
+trueTrump = 1085
+falseTrump = 11
+0.7061303924748622
+Total time: 5.148000001907349
+
+Process finished with exit code 0
+
+3rd run tek 500ler learn ilk üç çift 500ler test
+
+"C:\Program Files\Anaconda3\python.exe" D:/Users/26000595/PycharmProjects/naiveBayesHW2/learner.py
+handle
+There are 5430.0 tweets in the database
+2611.0 %0.4808471454880295 labeled as Hillary
+2818.0 %0.5189686924493554 labeled as Trump
+
+There are 9522.0 words in the database
+There are 5845.0 Hillary labeled words in the database
+There are 5847.0 Trump labeled words in the database
+25054.0 words in Hillary tweets
+28387.0 words in Trump tweets
+
+Total time: 300.460000038147
+Learning finished
+
+Process finished with exit code 0
+
+"C:\Program Files\Anaconda3\python.exe" D:/Users/26000595/PycharmProjects/naiveBayesHW2/tester.py
+Total time: 4.388000011444092
+Test finished
+
+Process finished with exit code 0
+
+"C:\Program Files\Anaconda3\python.exe" D:/Users/26000595/PycharmProjects/naiveBayesHW2/evaluation.py
+trueHillary = 524
+falseHillary = 32
+trueTrump = 876
+falseTrump = 91
+0.9192383453709784
+Total time: 1.99399995803833
+
+Process finished with exit code 0
+
+tweet:
+stonewall: the birthplace of a movement, and soon a national monument for equality. https://t.co/yb1u1tucr4 #thanksobama
+preprocessed tweet:
+thanksobama equality stonewall monument birthplace movement soon national
+false Trump
+
+tweet:
+let's act on coal miner safety so people like don blankenship are held accountable for blatantly disregarding it. https://t.co/eyxdxpvtuh
+preprocessed tweet:
+disregarding coal miner don held blankenship accountable safety blatantly people act like
+false Trump
+
+tweet:
+just a few hours left to vote in the ny primary. confirm your polling place, then head over: https://t.co/iwio5b9eal https://t.co/rch0h3ecrn
+preprocessed tweet:
+vote primary left place just hours polling head confirm ny
+false Trump
+
+tweet:
+everybody is talking about the protesters burning the american flags and proudly waving mexican flags. i want america first - so do voters!
+preprocessed tweet:
+first want america talking everybody proudly voters mexican protesters burning american flags waving
+false Hillary
+
+tweet:
+the @uschamber must fight harder for the american worker. china, and many others, are taking advantage of u.s. with our terrible trade pacts
+preprocessed tweet:
+china many harder pacts fight advantage trade terrible worker american must uschamber taking us others
+false Hillary
+
+tweet:
+"we've got a candidate in hillary clinton who is a fighter. we got one tough cookie." —@senwarren
+https://t.co/vu6pbtlsy4
+preprocessed tweet:
+clinton tough hillary senwarren fighter cookie one got candidate
+true Hillary
+
+tweet:
+today's third stop- londonderry, new hampshire! thank you!
+#fitn #votetrumpnh https://t.co/prpcxaz7ov
+preprocessed tweet:
+third todays hampshire stop fitn londonderry votetrumpnh thank new
+true Trump
+
+tweet:
+we can’t stop fighting until all lgbt americans can live their lives free of prejudice, violence, and hate. https://t.co/1omrtzfg9n
+preprocessed tweet:
+prejudice violence free americans fighting live hate lives stop lgbt can
+true Hillary
+
+tweet:
+donald trump is closer than ever to clinching the gop nomination. there's only one candidate who has more votes. https://t.co/luvanujuks
+preprocessed tweet:
+ever nomination donald candidate one votes clinching trump gop closer
+true Hillary
+
+tweet:
+"@gregusp61: you really rocked them hard in s.c. rubio and cruz were pummled. so glad jeb is gone! next no liar!"
+preprocessed tweet:
+gregusp61 rocked really hard sc pummled liar next gone glad cruz rubio jeb
+true Trump
