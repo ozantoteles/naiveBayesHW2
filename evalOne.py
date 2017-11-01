@@ -1,6 +1,3 @@
-import json
-import os
-from pprint import pprint
 import sqlite3
 import numpy as np
 import time
@@ -16,21 +13,13 @@ def stopWordRemover (text, swords):
     return list(set([word for word in text.split() if word.lower() not in swords]))
 
 def linkRemover (text):
-    #return list(set([word for word in text.split() if not (word.lower().startswith('www.') or word.lower().startswith('@') or word.lower().startswith('http'))]))
     return list(set([word for word in text.split() if not (word.lower().startswith('www.') or word.lower().startswith('http'))]))
 
 
 cursor.execute('''SELECT tweet, class FROM tweetsTest''')
 testSet = cursor.fetchall()
 
-# trueHillary = 0
-# falseHillary = 0
-# trueTrump = 0
-# falseTrump = 0
-
 randT = np.random.randint(0,len(testSet))
-
-
 tweet = testSet[randT][0]
 print("tweet:\n"+tweet)
 tweetNP = tweet.translate(str.maketrans("", "", punc))
@@ -38,76 +27,38 @@ tweetNPSW = ' '.join(stopWordRemover(tweetNP, stopWordsNoP))
 testString = ' '.join(linkRemover(tweetNPSW))
 print("preprocessed tweet:\n"+testString)
 
-#testString = "timobrien wviolating democratshill campaign lawsthen guilty helping finance"
 cHil = np.empty(0)
 cTru = np.empty(0)
-#cNeutral = np.empty(0)
-#cIrrelevant = np.empty(0)
 
 for word in testString.split():
     w = cursor.execute("SELECT EXISTS(SELECT 1 FROM wordsp WHERE word = ?)", (word,))
     if w.fetchone()[0]:
-        # cursor.execute('''INSERT OR IGNORE INTO wordsp(word) VALUES(?)''', (word,))
         cursor.execute('''SELECT phil FROM wordsp WHERE word = ?''', (word,))
         phil = cursor.fetchall()[0][0]
         cHil = np.append(cHil, [phil])
         cursor.execute('''SELECT ptru FROM wordsp WHERE word = ?''', (word,))
         ptru = cursor.fetchall()[0][0]
         cTru = np.append(cTru, [ptru])
-        # cursor.execute('''SELECT pneutral FROM wordsp WHERE word = ?''', (word,))
-        # pneutral = cursor.fetchall()[0][0]
-        # cNeutral = np.append(cNeutral, [pneutral])
-        # cursor.execute('''SELECT pirrelevant FROM wordsp WHERE word = ?''', (word,))
-        # pirrelevant = cursor.fetchall()[0][0]
-        # cIrrelevant = np.append(cIrrelevant, [pirrelevant])
 
 cHil = np.prod(cHil)
 cTru = np.prod(cTru)
-# cNeutral = np.prod(cNeutral)
-# cIrrelevant = np.prod(cIrrelevant)
 
-chances = np.array([cHil, cTru])#, cNeutral, cIrrelevant])
+chances = np.array([cHil, cTru])
 max = chances.max()
 if max == cHil:
-    # print("Model states Hillary")
-    # print("Label was "+str(row[1]))
     if str(testSet[randT][1]) == "HillaryClinton":
-        # trueHillary +=1
         print("true Hillary")
     elif str(testSet[randT][1]) == "realDonaldTrump":
-        #falseHillary +=1
         print("false Hillary")
 elif max == cTru:
-    # print("Model states Trump")
-    # print("Label was "+str(row[1]))
     if str(testSet[randT][1]) == "realDonaldTrump":
-        #trueTrump += 1
         print("true Trump")
     elif str(testSet[randT][1]) == "HillaryClinton":
-        #falseTrump += 1
         print("false Trump")
-# elif max == cNeutral:
-#     print("Model states Neutral")
-#     print("Label was "+str(row[1]))
-# elif max == cIrrelevant:
-#     print("Model states Irrelevant")
-#     print("Label was "+str(row[1]))
 else:
     print("Something is seriously wrong!")
     print("Label was "+str(testSet[randT][1]))
 
-    #print(cHil)
-    #print(cTru)
-
-    # print(cNeutral)
-    # print(cIrrelevant)
-
-# print("trueHillary = "+str(trueHillary))
-# print("falseHillary = "+str(falseHillary))
-# print("trueTrump = "+str(trueTrump))
-# print("falseTrump = "+str(falseTrump))
-
 db.close()
-
 t1 = time.time()
 print("Total time: "+str(t1-t0))

@@ -1,8 +1,6 @@
 import json
 import os
-from pprint import pprint
 import sqlite3
-import numpy as np
 import time
 t0=time.time()
 
@@ -20,7 +18,6 @@ def stopWordRemover (text, swords):
     return list(set([word for word in text.split() if word.lower() not in swords]))
 
 def linkRemover (text):
-    #return list(set([word for word in text.split() if not (word.lower().startswith('www.') or word.lower().startswith('@') or word.lower().startswith('http'))]))
     return list(set([word for word in text.split() if not (word.lower().startswith('www.') or word.lower().startswith('http'))]))
 
 for jsonFilename in os.listdir('dumpKaggleTest'):
@@ -32,47 +29,11 @@ for jsonFilename in os.listdir('dumpKaggleTest'):
         tweetNP = tweet.translate(str.maketrans("","", punc))
         tweetNPSW = ' '.join(stopWordRemover(tweetNP, stopWordsNoP))
         tweetNPSW = ' '.join(linkRemover(tweetNPSW))
-        #tweetNPSW = tweetNP ## comment this line after test
-        #' '.join(item for item in s.split() if not (item.startswith('www.') and item.endswith('.com') and len(item) > 7))
-        #tweetNPSW = tweet.translate(str.maketrans("", "", stopWordsNoP))
-        #tweetNPSW = [i for i in tweetNP if i not in stopWordsNoP]
-        #tweetNPSW = ' '.join(tweetNPSW)
-        #tweetNPSW = [i for i in tweetNP if i not in stopWordsNoP]
-
-        # pprint(tid)
-        # pprint(tweet)
-        #
-        # label = input("Press l for like, d for dislike, n for neutral, i for irrelevant \n")
-        # if label == "l":
-        #     classOf = "liked"
-        #     #cursor.execute('''UPDATE words SET likeCount = likeCount + ? WHERE word = ?''', (1, word))
-        # elif label == "d":
-        #     classOf = "disliked"
-        #     #cursor.execute('''UPDATE words SET dislikeCount = dislikeCount + ? WHERE word = ?''', (1, word))
-        # elif label == "n":
-        #     classOf = "neutral"
-        #     #cursor.execute('''UPDATE words SET neutralCount = neutralCount + ? WHERE word = ?''', (1, word))
-        # elif label == "i":
-        #     classOf = "irrelevant"
-        #     #cursor.execute('''UPDATE words SET irrelevantCount = irrelevanCount + ? WHERE word = ?''', (1, word))
-        # else:
-        #     classOf = "irrelevant"
-        #     #cursor.execute('''UPDATE words SET irrelevantCount = irrelevanCount + ? WHERE word = ?''', (1, word))
 
         cursor.execute('''INSERT INTO tweetsTest(tid, tweet, tweetNP, tweetNPSW, class) VALUES(?,?,?,?,?)''',
                        (tid, tweet, tweetNP, tweetNPSW, classOf))
-
-        #pprint(tweetNP)
-        # pprint(tweetNPSW)
-        # print("-------------\n\n")
-        #pprint(classOf)
-
 db.commit()
-
-
-
 db.close()
-
 t1 = time.time()
 print("Total time: "+str(t1-t0))
 print("Test finished")
