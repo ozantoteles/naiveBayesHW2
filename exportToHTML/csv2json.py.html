@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>csv2json.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(106,135,89); }
+.s3 { color: rgb(104,151,187); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+csv2json.py</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<a name="l1"><span class="ln">1    </span></a><span class="s0">import </span><span class="s1">csv</span><span class="s0">, </span><span class="s1">json 
+<a name="l2"><span class="ln">2    </span></a> 
+<a name="l3"><span class="ln">3    </span></a>csvFile = open(</span><span class="s2">'data/tweets2.csv'</span><span class="s0">, </span><span class="s2">'r'</span><span class="s0">, </span><span class="s1">encoding=</span><span class="s2">&quot;utf8&quot;</span><span class="s1">) 
+<a name="l4"><span class="ln">4    </span></a> 
+<a name="l5"><span class="ln">5    </span></a>fieldNames = (</span><span class="s2">&quot;id&quot;</span><span class="s0">,</span><span class="s2">&quot;handle&quot;</span><span class="s0">,</span><span class="s2">&quot;text&quot;</span><span class="s0">,</span><span class="s2">&quot;is_retweet&quot;</span><span class="s0">,</span><span class="s2">&quot;original_author&quot;</span><span class="s0">,</span><span class="s2">&quot;time&quot;</span><span class="s0">,</span><span class="s2">&quot;in_reply_to_screen_name&quot;</span><span class="s0">,</span><span class="s2">&quot;in_reply_to_status_id&quot;</span><span class="s0">,</span><span class="s2">&quot;in_reply_to_user_id&quot;</span><span class="s0">,</span><span class="s2">&quot;is_quote_status&quot;</span><span class="s0">,</span><span class="s2">&quot;lang&quot;</span><span class="s0">,</span><span class="s2">&quot;retweet_count&quot;</span><span class="s0">,</span><span class="s2">&quot;favorite_count&quot;</span><span class="s0">,</span><span class="s2">&quot;longitude&quot;</span><span class="s0">,</span><span class="s2">&quot;latitude&quot;</span><span class="s0">,</span><span class="s2">&quot;place_id&quot;</span><span class="s0">,</span><span class="s2">&quot;place_full_name&quot;</span><span class="s0">,</span><span class="s2">&quot;place_name&quot;</span><span class="s0">,</span><span class="s2">&quot;place_type&quot;</span><span class="s0">,</span><span class="s2">&quot;place_country_code&quot;</span><span class="s0">,</span><span class="s2">&quot;place_country&quot;</span><span class="s0">,</span><span class="s2">&quot;place_contained_within&quot;</span><span class="s0">,</span><span class="s2">&quot;place_attributes&quot;</span><span class="s0">,</span><span class="s2">&quot;place_bounding_box&quot;</span><span class="s0">,</span><span class="s2">&quot;source_url&quot;</span><span class="s0">,</span><span class="s2">&quot;truncated&quot;</span><span class="s0">,</span><span class="s2">&quot;entities&quot;</span><span class="s0">,</span><span class="s2">&quot;extended_entities&quot;</span><span class="s1">) 
+<a name="l6"><span class="ln">6    </span></a> 
+<a name="l7"><span class="ln">7    </span></a>reader = csv.DictReader(csvFile</span><span class="s0">, </span><span class="s1">fieldNames) 
+<a name="l8"><span class="ln">8    </span></a> 
+<a name="l9"><span class="ln">9    </span></a></span><span class="s0">for </span><span class="s1">row </span><span class="s0">in </span><span class="s1">reader: 
+<a name="l10"><span class="ln">10   </span></a>    items = list(row.items()) 
+<a name="l11"><span class="ln">11   </span></a>    jsonFileName = str(items[</span><span class="s3">0</span><span class="s1">][</span><span class="s3">1</span><span class="s1">]) 
+<a name="l12"><span class="ln">12   </span></a>    jsonFile = open(</span><span class="s2">'dumpKaggle/'</span><span class="s1">+jsonFileName+</span><span class="s2">'.json'</span><span class="s0">, </span><span class="s2">'w'</span><span class="s1">) 
+<a name="l13"><span class="ln">13   </span></a>    json.dump(row</span><span class="s0">, </span><span class="s1">jsonFile) 
+<a name="l14"><span class="ln">14   </span></a>    jsonFile.close()</span></pre>
+</body>
+</html>

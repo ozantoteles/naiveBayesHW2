@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>tweepyHandler.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(106,135,89); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+tweepyHandler.py</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<a name="l1"><span class="ln">1    </span></a><span class="s0">import </span><span class="s1">tweepy 
+<a name="l2"><span class="ln">2    </span></a></span><span class="s0">from </span><span class="s1">msr </span><span class="s0">import </span><span class="s1">MyStreamListener 
+<a name="l3"><span class="ln">3    </span></a> 
+<a name="l4"><span class="ln">4    </span></a>consumer_key = </span><span class="s2">&quot;1jZs5hCfFKovOaQT15z5zQsbe&quot;</span><span class="s1"> 
+<a name="l5"><span class="ln">5    </span></a>consumer_secret = </span><span class="s2">&quot;yZiiIo0J3i8n2qVweDMcOcnN9q9mIZcdgnDs0bGGWTPOWiJ1Ib&quot;</span><span class="s1"> 
+<a name="l6"><span class="ln">6    </span></a>access_token = </span><span class="s2">&quot;275816839-Ps7bIJ2lKJdYMxgHOojB1CcsPZvIXkxGjpAH5l6V&quot;</span><span class="s1"> 
+<a name="l7"><span class="ln">7    </span></a>access_token_secret = </span><span class="s2">&quot;9Ei4yIudGqP6fhK6O5CQF2tc4lSLyG3fxwgRELHESzGU7&quot;</span><span class="s1"> 
+<a name="l8"><span class="ln">8    </span></a> 
+<a name="l9"><span class="ln">9    </span></a>au = tweepy.OAuthHandler(consumer_key</span><span class="s0">, </span><span class="s1">consumer_secret) 
+<a name="l10"><span class="ln">10   </span></a>au.set_access_token(access_token</span><span class="s0">, </span><span class="s1">access_token_secret) 
+<a name="l11"><span class="ln">11   </span></a>api = tweepy.API(au) 
+<a name="l12"><span class="ln">12   </span></a> 
+<a name="l13"><span class="ln">13   </span></a>myStreamListener = MyStreamListener() 
+<a name="l14"><span class="ln">14   </span></a>myStream = tweepy.Stream(auth=api.auth</span><span class="s0">, </span><span class="s1">listener=myStreamListener) 
+<a name="l15"><span class="ln">15   </span></a>myStream.filter(track=[</span><span class="s2">'trump'</span><span class="s1">]) 
+<a name="l16"><span class="ln">16   </span></a></span></pre>
+</body>
+</html>
